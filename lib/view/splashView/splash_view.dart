@@ -5,6 +5,8 @@ import 'dart:math' as math;
 
 import 'package:social_media_app_flutter/view/login/login_view.dart';
 
+import '../../view_model/services/splash_services.dart';
+
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
 
@@ -17,10 +19,9 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(
-        Duration(seconds: 3),
-        () => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => LoginView())));
+
+    SplashServices services = SplashServices();
+    services.SplashTimer(context);
   }
 
   late AnimationController _controller =

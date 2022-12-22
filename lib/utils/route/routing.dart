@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_app_flutter/utils/route/route.dart';
 import 'package:social_media_app_flutter/view/login/login_view.dart';
+import 'package:social_media_app_flutter/view/singup/signup_view.dart';
 import 'package:social_media_app_flutter/view/splashView/splash_view.dart';
 
 class Routing {
@@ -11,6 +12,8 @@ class Routing {
         return MaterialPageRoute(builder: (_) => SplashView());
       case AppRoute.LoginView:
         return MaterialPageRoute(builder: (_) => LoginView());
+      case AppRoute.SignUPView:
+        return MaterialPageRoute(builder: (_) => SignUpView());
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(

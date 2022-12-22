@@ -3,18 +3,21 @@ import 'package:social_media_app_flutter/utils/component/main_button.dart';
 
 import '../../utils/component/input_text_field.dart';
 
-class LoginView extends StatefulWidget {
+class SignUpView extends StatefulWidget {
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _userNameController = TextEditingController();
   final emailfocusnode = FocusNode();
   final passwordfocusnode = FocusNode();
+  final userNamefocusnode = FocusNode();
 
   final GlobalKey _key = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
@@ -44,7 +47,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 Text(
-                  "Enter your email address\n to connect your account",
+                  "Enter your email address\n to register your account",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -54,6 +57,18 @@ class _LoginViewState extends State<LoginView> {
                     key: _key,
                     child: Column(
                       children: [
+                        InputTextField(
+                          hint: "User Name",
+                          obscureText: false,
+                          iconData: Icons.person_outline,
+                          focusNode: userNamefocusnode,
+                          keyboardType: TextInputType.text,
+                          fieldSetter: (value) {},
+                          formFieldValidator: (value) {
+                            return value.isEmpty ? "Enter valida email" : null;
+                          },
+                          controller: _userNameController,
+                        ),
                         InputTextField(
                           hint: "Email",
                           obscureText: false,
@@ -69,7 +84,6 @@ class _LoginViewState extends State<LoginView> {
                         InputTextField(
                           hint: "Password",
                           iconData: Icons.lock_outline,
-                          // righticon: Icons.visibility,
                           obscureText: true,
                           focusNode: passwordfocusnode,
                           fieldSetter: (value) {},
@@ -80,13 +94,6 @@ class _LoginViewState extends State<LoginView> {
                           },
                           controller: _passwordController,
                         ),
-                        Align(
-                            alignment: Alignment.topRight,
-                            child: Text(
-                              "ForgetPassword",
-                              style: TextStyle(
-                                  decoration: TextDecoration.underline),
-                            )),
                       ],
                     )),
                 SizedBox(
@@ -104,12 +111,12 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, 'signup');
+                    Navigator.pushNamed(context, 'login');
                   },
                   child: Text.rich(
-                    TextSpan(text: "Don't have an account?", children: [
+                    TextSpan(text: "Already have an account?", children: [
                       TextSpan(
-                          text: " SignUp",
+                          text: " Sign_in",
                           style: TextStyle(
                               decoration: TextDecoration.underline,
                               fontSize: 15))
