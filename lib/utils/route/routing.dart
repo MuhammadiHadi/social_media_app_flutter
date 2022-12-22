@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_app_flutter/utils/route/route.dart';
 import 'package:social_media_app_flutter/view/dashboard/dashboard.dart';
+import 'package:social_media_app_flutter/view/forget_password/forget_password.dart';
 import 'package:social_media_app_flutter/view/login/login_view.dart';
 import 'package:social_media_app_flutter/view/singup/signup_view.dart';
 import 'package:social_media_app_flutter/view/splashView/splash_view.dart';
@@ -17,6 +18,8 @@ class Routing {
         return MaterialPageRoute(builder: (_) => SignUpView());
       case AppRoute.DashboardScreen:
         return MaterialPageRoute(builder: (_) => DashboardScreen());
+      case AppRoute.ForgetPassword:
+        return MaterialPageRoute(builder: (_) => ForgetPassword());
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(

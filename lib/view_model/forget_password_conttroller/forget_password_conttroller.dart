@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media_app_flutter/utils/utils/utils.dart';
 import 'package:social_media_app_flutter/view_model/services/session_mangar.dart';
 
-class LoginConttroller with ChangeNotifier {
-  // DatabaseReference reference = FirebaseDatabase.instance.ref().child('user');
+class ForgetPasswordConttroller with ChangeNotifier {
   final _auths = FirebaseAuth.instance;
   bool _loading = false;
   bool get loading => _loading;
@@ -14,16 +13,16 @@ class LoginConttroller with ChangeNotifier {
     notifyListeners();
   }
 
-  void Login(BuildContext context, String email, String password) {
+  void forgetPassword(
+    BuildContext context,
+    String email,
+  ) {
     setLoading(true);
     try {
-      _auths
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) {
-        SessionConttroller().userId = value.user!.uid.toString();
+      _auths.sendPasswordResetEmail(email: email).then((value) {
         setLoading(false);
-        Utils.toastMessage("login successfully");
-        Navigator.pushNamed(context, 'dashboard');
+        Utils.toastMessage("Please check your Email");
+        Navigator.pushNamed(context, 'login');
       }).onError((error, stackTrace) {
         setLoading(false);
         Utils.toastMessage(error.toString());

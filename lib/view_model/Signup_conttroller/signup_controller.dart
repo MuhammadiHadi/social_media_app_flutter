@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:social_media_app_flutter/utils/route/route.dart';
 import 'package:social_media_app_flutter/utils/utils/utils.dart';
+import 'package:social_media_app_flutter/view_model/services/session_mangar.dart';
 
 class SignupController with ChangeNotifier {
   DatabaseReference reference = FirebaseDatabase.instance.ref().child('user');
@@ -22,6 +23,7 @@ class SignupController with ChangeNotifier {
       _auths
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) {
+        SessionConttroller().userId = value.user!.uid.toString();
         reference.child(value.user!.uid.toString()).set({
           'uid': value.user!.uid.toString(),
           'email': value.user!.email.toString(),

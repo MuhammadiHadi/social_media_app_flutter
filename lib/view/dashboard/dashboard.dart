@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_app_flutter/view_model/services/session_mangar.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -12,7 +13,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dashboard"),
+        title: Text(SessionConttroller().userId.toString()),
+        actions: [
+          IconButton(
+              onPressed: () {
+                SessionConttroller().userId = '';
+                Navigator.pushNamed(context, 'login');
+              },
+              icon: Icon(Icons.logout_outlined))
+        ],
       ),
     );
   }

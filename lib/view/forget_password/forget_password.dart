@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media_app_flutter/utils/component/main_button.dart';
 import 'package:social_media_app_flutter/utils/utils/utils.dart';
+import 'package:social_media_app_flutter/view_model/forget_password_conttroller/forget_password_conttroller.dart';
 import 'package:social_media_app_flutter/view_model/login_conttroller/login_conttroller.dart';
 
 import '../../utils/component/input_text_field.dart';
 
-class LoginView extends StatefulWidget {
+class ForgetPassword extends StatefulWidget {
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<ForgetPassword> createState() => _ForgetPasswordState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _ForgetPasswordState extends State<ForgetPassword> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   final emailfocusnode = FocusNode();
@@ -21,8 +22,6 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
-    String? fonteight;
-    String fontsize;
 
     final style = TextStyle(
       fontWeight: FontWeight.w900,
@@ -42,12 +41,12 @@ class _LoginViewState extends State<LoginView> {
                 Padding(
                   padding: const EdgeInsets.only(top: 70),
                   child: Text(
-                    "Welcome to Social People",
+                    "Forget Password",
                     style: style,
                   ),
                 ),
                 Text(
-                  "Enter your email address\n to connect your account",
+                  "Enter your email address\n to reset your password",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -72,50 +71,45 @@ class _LoginViewState extends State<LoginView> {
                           },
                           controller: _emailController,
                         ),
-                        InputTextField(
-                          hint: "Password",
-                          iconData: Icons.lock_outline,
-                          // righticon: Icons.visibility,
-                          obscureText: true,
-                          focusNode: passwordfocusnode,
-
-                          formFieldValidator: (value) {
-                            return value.isEmpty
-                                ? "Enter valida password"
-                                : null;
-                          },
-                          controller: _passwordController,
-                        ),
-                        Align(
-                            alignment: Alignment.topRight,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, 'ForgetPassword');
-                              },
-                              child: Text(
-                                "ForgetPassword",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline),
-                              ),
-                            )),
+                        // InputTextField(
+                        //   hint: "Password",
+                        //   iconData: Icons.lock_outline,
+                        //   // righticon: Icons.visibility,
+                        //   obscureText: true,
+                        //   focusNode: passwordfocusnode,
+                        //
+                        //   formFieldValidator: (value) {
+                        //     return value.isEmpty
+                        //         ? "Enter valida password"
+                        //         : null;
+                        //   },
+                        //   controller: _passwordController,
+                        // ),
+                        // Align(
+                        //     alignment: Alignment.topRight,
+                        //     child: Text(
+                        //       "ForgetPassword",
+                        //       style: TextStyle(
+                        //           decoration: TextDecoration.underline),
+                        //     )),
                       ],
                     )),
                 SizedBox(
-                  height: height * 0.05,
+                  height: height * 0.03,
                 ),
                 ChangeNotifierProvider(
-                  create: (_) => LoginConttroller(),
-                  child: Consumer<LoginConttroller>(
+                  create: (_) => ForgetPasswordConttroller(),
+                  child: Consumer<ForgetPasswordConttroller>(
                     builder: (context, provider, child) {
                       return MainButton(
-                        title: "LOGIN",
+                        title: "RESET",
                         color: Colors.green,
                         textcolor: Colors.white,
                         loading: provider.loading,
                         onPress: () {
                           if (_key.currentState!.validate()) {
-                            provider.Login(context, _emailController.text,
-                                _passwordController.text);
+                            provider.forgetPassword(
+                                context, _emailController.text);
                           }
                         },
                       );
@@ -125,20 +119,20 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(
                   height: height * 0.01,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, 'signup');
-                  },
-                  child: Text.rich(
-                    TextSpan(text: "Don't have an account?", children: [
-                      TextSpan(
-                          text: " SignUp",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontSize: 15))
-                    ]),
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () {
+                //     Navigator.pushNamed(context, 'signup');
+                //   },
+                //   child: Text.rich(
+                //     TextSpan(text: "Don't have an account?", children: [
+                //       TextSpan(
+                //           text: " SignUp",
+                //           style: TextStyle(
+                //               decoration: TextDecoration.underline,
+                //               fontSize: 15))
+                //     ]),
+                //   ),
+                // ),
               ],
             ),
           ),
