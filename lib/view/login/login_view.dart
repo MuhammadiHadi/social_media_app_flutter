@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:social_media_app_flutter/utils/component/main_button.dart';
+import 'package:social_media_app_flutter/utils/utils/utils.dart';
+import 'package:social_media_app_flutter/view_model/login_conttroller/login_conttroller.dart';
 
 import '../../utils/component/input_text_field.dart';
 
@@ -14,7 +17,7 @@ class _LoginViewState extends State<LoginView> {
   final emailfocusnode = FocusNode();
   final passwordfocusnode = FocusNode();
 
-  final GlobalKey _key = GlobalKey<FormState>();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
@@ -60,7 +63,10 @@ class _LoginViewState extends State<LoginView> {
                           iconData: Icons.email_outlined,
                           focusNode: emailfocusnode,
                           keyboardType: TextInputType.emailAddress,
-                          fieldSetter: (value) {},
+                          fieldSetter: (value) {
+                            Utils.fieldFocus(
+                                context, emailfocusnode, passwordfocusnode);
+                          },
                           formFieldValidator: (value) {
                             return value.isEmpty ? "Enter valide email" : null;
                           },
@@ -72,7 +78,7 @@ class _LoginViewState extends State<LoginView> {
                           // righticon: Icons.visibility,
                           obscureText: true,
                           focusNode: passwordfocusnode,
-                          fieldSetter: (value) {},
+
                           formFieldValidator: (value) {
                             return value.isEmpty
                                 ? "Enter valida password"
@@ -92,12 +98,24 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(
                   height: height * 0.05,
                 ),
-                MainButton(
-                  title: "LOGIN",
-                  color: Colors.green,
-                  textcolor: Colors.white,
-                  loading: false,
-                  onPress: () {},
+                ChangeNotifierProvider(
+                  create: (_) => LoginConttroller(),
+                  child: Consumer<LoginConttroller>(
+                    builder: (context, provider, child) {
+                      return MainButton(
+                        title: "LOGIN",
+                        color: Colors.green,
+                        textcolor: Colors.white,
+                        loading: provider.loading,
+                        onPress: () {
+                          if (_key.currentState!.validate()) {
+                            provider.Login(context, _emailController.text,
+                                _passwordController.text);
+                          }
+                        },
+                      );
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: height * 0.01,

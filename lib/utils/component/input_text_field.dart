@@ -28,34 +28,32 @@ class InputTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      child: SizedBox(
-        height: 45,
-        child: TextFormField(
-          obscureText: obscureText!,
-          keyboardType: keyboardType,
-          onFieldSubmitted: fieldSetter,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(5),
-            hintText: hint,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            prefixIcon: Icon(
-              iconData,
-            ),
-            suffixIcon: Icon(
-              righticon,
-              color: Colors.black,
-            ),
+      child: TextFormField(
+        obscureText: obscureText!,
+        keyboardType: keyboardType,
+        onFieldSubmitted: fieldSetter,
+        decoration: InputDecoration(
+          isDense: true,
+          contentPadding: EdgeInsets.all(5),
+          hintText: hint,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
-          validator: formFieldValidator,
-          controller: controller,
-          focusNode: focusNode,
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          prefixIcon: Icon(
+            iconData,
+          ),
+          suffixIcon: Icon(
+            righticon,
+            color: Colors.black,
+          ),
         ),
+        validator: formFieldValidator,
+        controller: controller,
+        focusNode: focusNode,
       ),
     );
   }
