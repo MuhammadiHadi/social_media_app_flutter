@@ -7,4 +7,5 @@ class AppRoute {
   static const String SignUPView = 'signup';
   static const String DashboardScreen = 'dashboard';
   static const String ForgetPassword = 'ForgetPassword';
+  static const String ProfileView = 'profile';
 }

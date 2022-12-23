@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_media_app_flutter/utils/color/color.dart';
 import 'package:social_media_app_flutter/utils/component/main_button.dart';
 import 'package:social_media_app_flutter/utils/utils/utils.dart';
 import 'package:social_media_app_flutter/view_model/Signup_conttroller/signup_controller.dart';
@@ -121,8 +122,8 @@ class _SignUpViewState extends State<SignUpView> {
                                 ),
                                 MainButton(
                                   title: "LOGIN",
-                                  color: Colors.green,
-                                  textcolor: Colors.white,
+                                  color: AppColor.black,
+                                  textcolor: AppColor.white,
                                   loading: provider.loading,
                                   onPress: () {
                                     if (_key.currentState!.validate()) {

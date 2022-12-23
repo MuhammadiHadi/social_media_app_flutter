@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_media_app_flutter/utils/color/color.dart';
 import 'package:social_media_app_flutter/utils/component/main_button.dart';
 import 'package:social_media_app_flutter/utils/utils/utils.dart';
 import 'package:social_media_app_flutter/view_model/forget_password_conttroller/forget_password_conttroller.dart';
@@ -28,6 +29,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       fontSize: 23,
     );
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Forget Password"),
+        elevation: 0.0,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -71,27 +77,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           },
                           controller: _emailController,
                         ),
-                        // InputTextField(
-                        //   hint: "Password",
-                        //   iconData: Icons.lock_outline,
-                        //   // righticon: Icons.visibility,
-                        //   obscureText: true,
-                        //   focusNode: passwordfocusnode,
-                        //
-                        //   formFieldValidator: (value) {
-                        //     return value.isEmpty
-                        //         ? "Enter valida password"
-                        //         : null;
-                        //   },
-                        //   controller: _passwordController,
-                        // ),
-                        // Align(
-                        //     alignment: Alignment.topRight,
-                        //     child: Text(
-                        //       "ForgetPassword",
-                        //       style: TextStyle(
-                        //           decoration: TextDecoration.underline),
-                        //     )),
                       ],
                     )),
                 SizedBox(
@@ -103,8 +88,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     builder: (context, provider, child) {
                       return MainButton(
                         title: "RESET",
-                        color: Colors.green,
-                        textcolor: Colors.white,
+                        color: AppColor.black,
+                        textcolor: AppColor.white,
                         loading: provider.loading,
                         onPress: () {
                           if (_key.currentState!.validate()) {
