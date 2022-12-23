@@ -43,6 +43,7 @@ dependencies:
   fluttertoast:
   firebase_database:
   firebase_storage:
+  persistent_bottom_nav_bar:
 
 dev_dependencies:
   flutter_test:
