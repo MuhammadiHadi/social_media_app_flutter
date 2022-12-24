@@ -1,7 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:social_media_app_flutter/src/color/color.dart';
+import 'package:social_media_app_flutter/view/dashboard/message_view/message_view.dart';
 import 'package:social_media_app_flutter/view/dashboard/profile/profile_view.dart';
+import 'package:social_media_app_flutter/view/dashboard/user_list/user_list.dart';
+
 import 'package:social_media_app_flutter/view_model/services/session_mangar.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -16,24 +20,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<Widget> Screen() {
     return [
       Text("home"),
-      Text("home"),
-      Text("home"),
+      MessageView(),
+      UserList(),
       ProfileView(),
     ];
   }
 
   List<PersistentBottomNavBarItem> item() {
     return [
-      PersistentBottomNavBarItem(icon: Icon(Icons.home)),
-      PersistentBottomNavBarItem(icon: Icon(Icons.search)),
       PersistentBottomNavBarItem(
-          icon: Icon(Icons.whatsapp),
-          activeColorPrimary: Colors.greenAccent,
-          activeColorSecondary: Colors.green),
+          icon: Icon(Icons.home),
+          activeColorPrimary: AppColor.gainsboro,
+          activeColorSecondary: Colors.black),
+      PersistentBottomNavBarItem(
+          icon: Icon(Icons.chat_outlined),
+          activeColorPrimary: AppColor.gainsboro,
+          activeColorSecondary: Colors.black),
+      PersistentBottomNavBarItem(
+          icon: Icon(Icons.group_add_outlined),
+          activeColorPrimary: AppColor.gainsboro,
+          activeColorSecondary: AppColor.black),
       PersistentBottomNavBarItem(
           icon: Icon(
             Icons.person_outline,
           ),
+          activeColorPrimary: AppColor.gainsboro,
           activeColorSecondary: Colors.black),
     ];
   }

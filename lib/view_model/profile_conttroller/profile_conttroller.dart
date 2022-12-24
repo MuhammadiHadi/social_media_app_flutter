@@ -67,6 +67,7 @@ class ProfileConttroller with ChangeNotifier {
                   ListTile(
                     onTap: () {
                       pickImageformCamera(context);
+                      Navigator.pop(context);
                     },
                     leading: Icon(Icons.camera_alt_outlined),
                     title: Text("Camera"),
@@ -74,6 +75,7 @@ class ProfileConttroller with ChangeNotifier {
                   ListTile(
                     onTap: () {
                       pickImageformGallery(context);
+                      Navigator.pop(context);
                     },
                     leading: Icon(Icons.image),
                     title: Text("Gallery"),
@@ -110,44 +112,114 @@ class ProfileConttroller with ChangeNotifier {
     });
   }
 
-  void updatedata(BuildContext context, String name) async {
+  void updateUsername(BuildContext context, String name) async {
     _nameconttroller.text = name;
+
     showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            title: Center(child: Text("Update field")),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  InputTextField(
-                    iconData: Icons.person_outline,
-                    focusNode: namefocus,
-                    formFieldValidator: (value) {},
-                    fieldSetter: (value) {},
-                    controller: _nameconttroller,
-                    keyboardType: TextInputType.text,
-                    hint: "enter name",
-                    obscureText: false,
-                  )
-                ],
+          return Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
+            child: AlertDialog(
+              title: Center(child: Text("UPDATE FIELD")),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    InputTextField(
+                      iconData: Icons.person_outline,
+                      focusNode: namefocus,
+                      formFieldValidator: (value) {},
+                      fieldSetter: (value) {},
+                      controller: _nameconttroller,
+                      keyboardType: TextInputType.text,
+                      hint: "enter name",
+                      obscureText: false,
+                    )
+                  ],
+                ),
               ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "CANCEL",
+                      style: TextStyle(
+                          color: Colors.red, fontWeight: FontWeight.w700),
+                    )),
+                TextButton(
+                    onPressed: () {
+                      reference
+                          .child(SessionConttroller().userId.toString())
+                          .update({
+                        'username': _nameconttroller.text.toString(),
+                      }).then((value) {
+                        _nameconttroller.clear();
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: Text("OK",
+                        style: TextStyle(
+                            color: Colors.green, fontWeight: FontWeight.w700))),
+              ],
             ),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "cancel",
-                    style: TextStyle(color: Colors.red),
-                  )),
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("ok", style: TextStyle(color: Colors.black))),
-            ],
+          );
+        });
+  }
+
+  void updatePhone(BuildContext context, String phone) async {
+    _phoneconttroller.text = phone;
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
+            child: AlertDialog(
+              title: Center(child: Text("UPDATE FIELD")),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    InputTextField(
+                      iconData: Icons.person_outline,
+                      focusNode: phonefocus,
+                      formFieldValidator: (value) {},
+                      fieldSetter: (value) {},
+                      controller: _phoneconttroller,
+                      keyboardType: TextInputType.number,
+                      hint: "enter phone",
+                      obscureText: false,
+                    )
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "CANCEL",
+                      style: TextStyle(
+                          color: Colors.red, fontWeight: FontWeight.w700),
+                    )),
+                TextButton(
+                    onPressed: () {
+                      reference
+                          .child(SessionConttroller().userId.toString())
+                          .update({
+                        'phone': _phoneconttroller.text.toString(),
+                      }).then((value) {
+                        _phoneconttroller.clear();
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: Text("OK",
+                        style: TextStyle(
+                            color: Colors.green, fontWeight: FontWeight.w700))),
+              ],
+            ),
           );
         });
   }

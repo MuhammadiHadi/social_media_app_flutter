@@ -4,9 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:social_media_app_flutter/utils/color/color.dart';
+import 'package:social_media_app_flutter/src/color/color.dart';
 import 'package:social_media_app_flutter/utils/component/main_button.dart';
-import 'package:social_media_app_flutter/utils/route/route.dart';
 import 'package:social_media_app_flutter/view_model/profile_conttroller/profile_conttroller.dart';
 import 'package:social_media_app_flutter/view_model/services/session_mangar.dart';
 
@@ -123,7 +122,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 children: [
                                   InkWell(
                                     onTap: () {
-                                      provider.updatedata(
+                                      provider.updateUsername(
                                           context, map['username']);
                                     },
                                     child: ReusebalRow(
@@ -132,12 +131,18 @@ class _ProfileViewState extends State<ProfileView> {
                                       value: map['username'].toString(),
                                     ),
                                   ),
-                                  ReusebalRow(
-                                    titel: "Phone",
-                                    icon: Icons.phone_outlined,
-                                    value: map['phone'].toString() == ''
-                                        ? 'xxx-xxx-xxx'
-                                        : map['phone'].toString(),
+                                  InkWell(
+                                    onTap: () {
+                                      provider.updatePhone(
+                                          context, map['phone']);
+                                    },
+                                    child: ReusebalRow(
+                                      titel: "Phone",
+                                      icon: Icons.phone_outlined,
+                                      value: map['phone'].toString() == ''
+                                          ? 'xxx-xxx-xxx'
+                                          : map['phone'].toString(),
+                                    ),
                                   ),
                                   ReusebalRow(
                                     titel: "Email",
@@ -155,11 +160,7 @@ class _ProfileViewState extends State<ProfileView> {
                                       SessionConttroller().userId = '';
 
                                       final _auths = FirebaseAuth.instance;
-                                      _auths.signOut().then((value) {
-                                        Navigator.pushNamed(
-                                            context, AppRoute.LoginView);
-                                      });
-                                      setState(() {});
+                                      _auths.signOut().then((value) {});
                                     },
                                   )
                                 ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_app_flutter/utils/route/route.dart';
 import 'package:social_media_app_flutter/view/dashboard/dashboard.dart';
+import 'package:social_media_app_flutter/view/dashboard/message_view/message_view.dart';
 import 'package:social_media_app_flutter/view/dashboard/profile/profile_view.dart';
 import 'package:social_media_app_flutter/view/forget_password/forget_password.dart';
 import 'package:social_media_app_flutter/view/login/login_view.dart';
@@ -22,6 +23,8 @@ class Routing {
         return MaterialPageRoute(builder: (_) => ForgetPassword());
       case AppRoute.ProfileView:
         return MaterialPageRoute(builder: (_) => ProfileView());
+      case AppRoute.ProfileView:
+        return MaterialPageRoute(builder: (_) => MessageView());
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(
