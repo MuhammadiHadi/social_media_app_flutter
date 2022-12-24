@@ -53,7 +53,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Navigator.pushNamed(context, 'login');
                 });
               },
-              icon: Icon(Icons.logout_outlined))
+              icon: Icon(Icons.abc_sharp))
         ],
       ),
       body: SafeArea(

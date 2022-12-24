@@ -28,6 +28,7 @@ class SignupController with ChangeNotifier {
           'uid': value.user!.uid.toString(),
           'email': value.user!.email.toString(),
           'username': username,
+          'phone': '',
           'profile': '',
         }).then((value) {
           setLoading(false);

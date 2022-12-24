@@ -4,7 +4,6 @@ import 'package:social_media_app_flutter/utils/utils/utils.dart';
 import 'package:social_media_app_flutter/view_model/services/session_mangar.dart';
 
 class LoginConttroller with ChangeNotifier {
-  // DatabaseReference reference = FirebaseDatabase.instance.ref().child('user');
   final _auths = FirebaseAuth.instance;
   bool _loading = false;
   bool get loading => _loading;

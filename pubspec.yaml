@@ -44,6 +44,7 @@ dependencies:
   firebase_database:
   firebase_storage:
   persistent_bottom_nav_bar:
+  image_picker:
 
 dev_dependencies:
   flutter_test:
