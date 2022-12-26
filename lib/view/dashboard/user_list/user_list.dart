@@ -32,7 +32,12 @@ class _UserListState extends State<UserList> {
                       onTap: () {
                         PersistentNavBarNavigator.pushNewScreen(
                           context,
-                          screen: MessageView(),
+                          screen: MessageView(
+                            name: snapshot.child('username').value.toString(),
+                            image: snapshot.child('profile').value.toString(),
+                            receiverId: snapshot.child('uid').value.toString(),
+                            email: snapshot.child('email').value.toString(),
+                          ),
                         );
                       },
                       leading: snapshot.child('profile').value.toString() == ''

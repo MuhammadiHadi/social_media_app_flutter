@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MessageView extends StatefulWidget {
-  const MessageView({Key? key}) : super(key: key);
+  String? name;
+  String? image;
+  String? receiverId;
+  String? email;
+  MessageView({
+    Key? key,
+    this.image,
+    this.name,
+    this.receiverId,
+    this.email,
+  }) : super(key: key);
 
   @override
   State<MessageView> createState() => _MessageViewState();
@@ -10,6 +20,11 @@ class MessageView extends StatefulWidget {
 class _MessageViewState extends State<MessageView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.name!),
+        centerTitle: true,
+      ),
+    );
   }
 }
