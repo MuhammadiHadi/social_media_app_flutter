@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:social_media_app_flutter/utils/route/route.dart';
 import 'package:social_media_app_flutter/utils/utils/utils.dart';
 import 'package:social_media_app_flutter/view_model/services/session_mangar.dart';
 
