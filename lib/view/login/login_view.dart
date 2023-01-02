@@ -116,53 +116,63 @@ class _LoginViewState extends State<LoginView> {
                   create: (_) => LoginConttroller(),
                   child: Consumer<LoginConttroller>(
                     builder: (context, provider, child) {
-                      return MainButton(
-                        title: "LOGIN",
-                        color: AppColor.black,
-                        textcolor: AppColor.white,
-                        loading: provider.loading,
-                        onPress: () {
-                          if (_key.currentState!.validate()) {
-                            provider.Login(context, _emailController.text,
-                                _passwordController.text);
-                          }
-                        },
+                      return Column(
+                        children: [
+                          MainButton(
+                            title: "LOGIN",
+                            color: AppColor.black,
+                            textcolor: AppColor.white,
+                            loading: provider.loading,
+                            onPress: () {
+                              if (_key.currentState!.validate()) {
+                                provider.Login(context, _emailController.text,
+                                    _passwordController.text);
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, 'signup');
+                            },
+                            child: Text.rich(
+                              TextSpan(
+                                  text: "Don't have an account?",
+                                  children: [
+                                    TextSpan(
+                                        text: " SignUp",
+                                        style: TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            fontSize: 15))
+                                  ]),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.04,
+                          ),
+                          SocialButton(
+                            onPress: () {
+                              provider.GoogleSign_in(context);
+                            },
+                            image: "assets/images/google.png",
+                            title: " Google",
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
+                          SocialButton(
+                            image: "assets/images/facebook.png",
+                            title: "Facebook",
+                            color: Colors.white,
+                          ),
+                        ],
                       );
                     },
                   ),
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, 'signup');
-                  },
-                  child: Text.rich(
-                    TextSpan(text: "Don't have an account?", children: [
-                      TextSpan(
-                          text: " SignUp",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontSize: 15))
-                    ]),
-                  ),
-                ),
-                SizedBox(
-                  height: height * 0.04,
-                ),
-                SocialButton(
-                  image: "assets/images/google.png",
-                  title: " GOOGLE",
-                  color: Colors.white,
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                SocialButton(
-                  image: "assets/images/facebook.png",
-                  title: "Facebook",
-                  color: Colors.white,
                 ),
               ],
             ),

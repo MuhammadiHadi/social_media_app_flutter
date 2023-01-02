@@ -48,6 +48,7 @@ dependencies:
   animated_text_kit:
   loading_animation_widget:
   google_fonts:
+  google_sign_in:
 
 dev_dependencies:
   flutter_test:
