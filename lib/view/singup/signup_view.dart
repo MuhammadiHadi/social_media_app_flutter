@@ -1,4 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media_app_flutter/src/color/color.dart';
 import 'package:social_media_app_flutter/utils/component/main_button.dart';
@@ -35,13 +37,7 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
-    String? fonteight;
-    String fontsize;
 
-    final style = TextStyle(
-      fontWeight: FontWeight.w900,
-      fontSize: 23,
-    );
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -59,14 +55,28 @@ class _SignUpViewState extends State<SignUpView> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 70),
-                          child: Text(
-                            "Welcome to Social People",
-                            style: style,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text("Welcome!",
+                                style: GoogleFonts.laila(fontSize: 34)),
                           ),
                         ),
-                        Text(
-                          "Enter your email address\n to register your account",
-                          textAlign: TextAlign.center,
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: DefaultTextStyle(
+                            style: GoogleFonts.laila(
+                                fontSize: 12, color: Colors.black),
+                            child: Container(
+                              height: 20,
+                              child: AnimatedTextKit(
+                                animatedTexts: [
+                                  TyperAnimatedText(
+                                      'Enter your email address to register your account')
+                                ],
+                                isRepeatingAnimation: true,
+                              ),
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: height * .05,

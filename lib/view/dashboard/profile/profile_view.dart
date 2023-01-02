@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media_app_flutter/src/color/color.dart';
 import 'package:social_media_app_flutter/utils/component/main_button.dart';
@@ -33,7 +34,12 @@ class _ProfileViewState extends State<ProfileView> {
                       ref.child(SessionConttroller().userId.toString()).onValue,
                   builder: (context, AsyncSnapshot snapshot) {
                     if (!snapshot.hasData) {
-                      return Center(child: CircularProgressIndicator());
+                      return Center(
+                        child: LoadingAnimationWidget.flickr(
+                            leftDotColor: Colors.lime,
+                            rightDotColor: Colors.yellow,
+                            size: 40),
+                      );
                     } else if (snapshot.hasData) {
                       Map<dynamic, dynamic> map = snapshot.data.snapshot.value;
                       return SingleChildScrollView(

@@ -13,11 +13,11 @@ class SplashServices {
     final user = _auths.currentUser;
     if (user != null) {
       SessionConttroller().userId = user.uid.toString();
-      Timer(Duration(seconds: 3), () {
+      Timer(Duration(milliseconds: 3000), () {
         Navigator.pushNamed(context, 'dashboard');
       });
     } else {
-      Timer(Duration(seconds: 3), () {
+      Timer(Duration(seconds: 5), () {
         Navigator.pushNamed(context, 'login');
       });
     }

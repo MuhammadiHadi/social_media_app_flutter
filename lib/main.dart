@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_app_flutter/src/color/color.dart';
 import 'utils/route/route.dart';
 import 'utils/route/routing.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.lime,
       ),
       initialRoute: AppRoute.SplashView,
       onGenerateRoute: Routing.generateRoute,

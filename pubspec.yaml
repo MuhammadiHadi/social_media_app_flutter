@@ -45,6 +45,9 @@ dependencies:
   firebase_storage:
   persistent_bottom_nav_bar:
   image_picker:
+  animated_text_kit:
+  loading_animation_widget:
+  google_fonts:
 
 dev_dependencies:
   flutter_test:

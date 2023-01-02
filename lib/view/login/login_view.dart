@@ -1,7 +1,10 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media_app_flutter/src/color/color.dart';
 import 'package:social_media_app_flutter/utils/component/main_button.dart';
+import 'package:social_media_app_flutter/utils/component/soical_button.dart';
 import 'package:social_media_app_flutter/utils/utils/utils.dart';
 import 'package:social_media_app_flutter/view_model/login_conttroller/login_conttroller.dart';
 
@@ -22,13 +25,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
-    String? fonteight;
-    String fontsize;
 
-    final style = TextStyle(
-      fontWeight: FontWeight.w900,
-      fontSize: 23,
-    );
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -37,19 +34,30 @@ class _LoginViewState extends State<LoginView> {
           ),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 70),
-                  child: Text(
-                    "Welcome to Social People",
-                    style: style,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text("Welcome!",
+                        style: GoogleFonts.laila(fontSize: 34)),
                   ),
                 ),
-                Text(
-                  "Enter your email address\n to connect your account",
-                  textAlign: TextAlign.center,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: DefaultTextStyle(
+                    style: GoogleFonts.laila(fontSize: 12, color: Colors.black),
+                    child: Container(
+                      height: 20,
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TyperAnimatedText(
+                              'Enter your email address to connect your account')
+                        ],
+                        isRepeatingAnimation: true,
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: height * .05,
@@ -139,6 +147,22 @@ class _LoginViewState extends State<LoginView> {
                               fontSize: 15))
                     ]),
                   ),
+                ),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                SocialButton(
+                  image: "assets/images/google.png",
+                  title: " GOOGLE",
+                  color: Colors.white,
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                SocialButton(
+                  image: "assets/images/facebook.png",
+                  title: "Facebook",
+                  color: Colors.white,
                 ),
               ],
             ),

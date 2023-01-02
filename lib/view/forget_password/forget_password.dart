@@ -1,4 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media_app_flutter/src/color/color.dart';
 import 'package:social_media_app_flutter/utils/component/main_button.dart';
@@ -23,16 +25,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
 
-    final style = TextStyle(
-      fontWeight: FontWeight.w900,
-      fontSize: 23,
-    );
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Forget Password"),
-        elevation: 0.0,
-      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -44,15 +37,28 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 70),
-                  child: Text(
-                    "Forget Password",
-                    style: style,
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text("Forget Password!",
+                        style: GoogleFonts.laila(fontSize: 25)),
                   ),
                 ),
-                Text(
-                  "Enter your email address\n to reset your password",
-                  textAlign: TextAlign.center,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: DefaultTextStyle(
+                    style: GoogleFonts.laila(fontSize: 12, color: Colors.black),
+                    child: Container(
+                      height: 20,
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TyperAnimatedText(
+                              'Enter your email address to Reset your password')
+                        ],
+                        isRepeatingAnimation: true,
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: height * .05,
@@ -103,20 +109,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 SizedBox(
                   height: height * 0.01,
                 ),
-                // InkWell(
-                //   onTap: () {
-                //     Navigator.pushNamed(context, 'signup');
-                //   },
-                //   child: Text.rich(
-                //     TextSpan(text: "Don't have an account?", children: [
-                //       TextSpan(
-                //           text: " SignUp",
-                //           style: TextStyle(
-                //               decoration: TextDecoration.underline,
-                //               fontSize: 15))
-                //     ]),
-                //   ),
-                // ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "Back",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                )
               ],
             ),
           ),

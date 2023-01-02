@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
 
 import 'package:social_media_app_flutter/view/login/login_view.dart';
@@ -32,18 +34,21 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset("assets/images/social.jpg"),
-          SizedBox(
-            height: 30,
-          ),
-          CircularProgressIndicator(
-            color: Colors.amberAccent,
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            DefaultTextStyle(
+              style: GoogleFonts.fascinateInline(
+                  fontSize: 45, color: Colors.amber),
+              child: AnimatedTextKit(
+                  animatedTexts: [WavyAnimatedText("Coder Crew")]),
+            ),
+
+            // Image.asset("assets/images/social.jpg"),
+          ],
+        ),
       ),
     );
   }
